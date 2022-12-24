@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express'
-import { BadRequestError } from '@apa_malaghe/utility'
+import { BadRequestError } from '../../errors/bad-request-error'
 
 import { Order } from '../../models/order'
 

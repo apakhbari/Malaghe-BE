@@ -6,8 +6,7 @@
   "scripts": {
     "start": "ts-node-dev --poll src/index.ts",
     "test": "jest --watchAll --no-cache --detectOpenHandles",
-    "test:ci": "jest",
-    "update apa_malaghe/utility": "npm update @apa_malaghe/utility"
+    "test:ci": "jest"
   },
   "jest": {
     "preset": "ts-jest",
@@ -20,7 +19,6 @@
   "author": "APA",
   "license": "ISC",
   "dependencies": {
-    "@apa_malaghe/utility": "^1.0.14",
     "@types/cookie-session": "^2.0.42",
     "@types/express": "^4.17.10",
     "@types/jsonwebtoken": "^8.5.0",

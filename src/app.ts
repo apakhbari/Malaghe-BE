@@ -2,7 +2,9 @@ import express from 'express'
 import 'express-async-errors'
 import { json } from 'body-parser'
 import cookieSession from 'cookie-session'
-import { errorHandler, NotFoundError, currentUser } from '@apa_malaghe/utility'
+import { errorHandler } from './middleware/err-handler'
+import { NotFoundError } from './errors/not-found-error'
+import { currentUser } from './middleware/current-user'
 
 const { REDIS_URL, REDIS_PORT, SESSION_SECRET } = require('./config/config')
 

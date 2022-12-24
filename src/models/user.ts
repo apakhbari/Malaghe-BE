@@ -2,7 +2,8 @@ import mongoose from 'mongoose'
 import { Password } from '../services/password'
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
-import { UsersRoles, UsersGender } from '@apa_malaghe/utility'
+import { UsersRoles } from '../types/users-roles'
+import { UsersGender } from '../types/users-gender'
 
 // An interface that describes the properties that are required to create a new User
 interface UserAttrs {

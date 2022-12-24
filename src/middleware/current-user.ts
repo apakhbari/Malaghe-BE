@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 
-import { UsersRoles } from '../events/types/users-roles'
-import { UsersGender } from '../events/types/users-gender'
+import { UsersRoles } from '../types/users-roles'
+import { UsersGender } from '../types/users-gender'
 
 interface UserPayload {
   id: string

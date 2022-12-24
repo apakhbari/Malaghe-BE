@@ -1,11 +1,9 @@
 import express, { Request, Response } from 'express'
-import {
-  BadRequestError,
-  NotFoundError,
-  NotAuthorizedError,
-  requireAuth,
-  currentUser,
-} from '@apa_malaghe/utility'
+
+import { NotFoundError } from '../../errors/not-found-error'
+import { requireAuth } from '../../middleware/require-auth'
+import { requireAuthMiddleware } from '../../middleware/authMiddleware'
+import { currentUser } from '../../middleware/current-user'
 
 import { User } from '../../models/user'
 
