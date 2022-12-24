@@ -62,12 +62,11 @@ router.post(
         laName: user.laName,
         gender: user.gender,
         role: user.role,
-        valid: 1,
       },
       process.env.JWT_KEY!
     )
 
-    req.session.user = userJWT
+    //req.session.user = userJWT
 
     // Store it on session object
     req.session = {
@@ -77,11 +76,5 @@ router.post(
     res.status(201).send(userJWT)
   }
 )
-
-declare module 'express-session' {
-  interface SessionData {
-    jwt: string
-  }
-}
 
 export { router as signupRouter }

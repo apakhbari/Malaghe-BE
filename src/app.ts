@@ -9,9 +9,9 @@ import { currentUser } from './middleware/current-user'
 const { REDIS_URL, REDIS_PORT, SESSION_SECRET } = require('./config/config')
 
 //redis
-import session from 'express-session'
+//import session from 'express-session'
 import redis from 'redis'
-import RedisStore from 'connect-redis'
+//import RedisStore from 'connect-redis'
 
 //cors
 import cors from 'cors'
@@ -43,6 +43,8 @@ import Logger from './services/logger'
 import { rateLimit } from 'express-rate-limit'
 import helmet from 'helmet'
 import ExpressMongoSanitize from 'express-mongo-sanitize'
+
+const cookieParser = require('cookie-parser')
 
 var rfs = require('rotating-file-stream') // version 2.x
 var morgan = require('morgan')
@@ -91,10 +93,13 @@ app.get('/logger', (_, res) => {
 // Data sanitization against NoSQL query injection
 app.use(ExpressMongoSanitize())
 
+{
+  /*
 let redisClient = redis.createClient({
   host: REDIS_URL,
   port: REDIS_PORT,
 })
+
 
 app.use(
   session({
@@ -109,6 +114,8 @@ app.use(
     },
   })
 )
+ */
+}
 
 app.use(
   cookieSession({
@@ -117,6 +124,9 @@ app.use(
     sameSite: false,
   })
 )
+
+app.use(cookieParser())
+
 app.use(currentUser)
 
 //auth routes

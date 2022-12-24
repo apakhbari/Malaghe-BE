@@ -30,12 +30,15 @@ export const currentUser = (
   if (!req.session?.jwt) {
     return next()
   }
+  console.log(req.cookies)
   try {
     const payload = jwt.verify(
       req.session.jwt,
       process.env.JWT_KEY!
     ) as UserPayload
     req.currentUser = payload
-  } catch (err) {}
+  } catch (err) {
+    console.log(err)
+  }
   next()
 }
