@@ -44,7 +44,7 @@ import { rateLimit } from 'express-rate-limit'
 import helmet from 'helmet'
 import ExpressMongoSanitize from 'express-mongo-sanitize'
 
-const cookieParser = require('cookie-parser')
+//const cookieParser = require('cookie-parser')
 
 var rfs = require('rotating-file-stream') // version 2.x
 var morgan = require('morgan')
@@ -125,7 +125,7 @@ app.use(
   })
 )
 
-app.use(cookieParser())
+//app.use(cookieParser())
 
 app.use(currentUser)
 
