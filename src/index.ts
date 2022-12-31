@@ -25,9 +25,16 @@ const start = async () => {
   }
 
   try {
+    //mongodb://apa1234:mypassword@mongo:27017
+
     //mongodb://mongo:27017/mongo
     //const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`
-    const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}`
+
+    //const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}`
+
+    const mongoURL =
+      'mongodb://root:woK9gwoVNT1tIMA11dwfZOjTihTV152a@mongodb.malaghe.svc:27017'
+
     console.log(mongoURL)
 
     await mongoose.connect(mongoURL, {
