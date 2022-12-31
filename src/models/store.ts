@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import { Types } from 'mongoose'
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
+import { Type } from 'typescript'
 
 interface storeAttrs {
   title: string
@@ -18,11 +19,20 @@ interface storeAttrs {
   availableQuantity: number
   ratingsAverage?: number
   ratingsQuantity?: number
+  comments?: [
+    {
+      id?: Types.ObjectId
+      name?: string
+      message?: string
+      createdAt?: Date
+    }
+  ]
   price: number
   hasDiscount?: boolean
   discountKind?: discountKind
   discountedPrice?: number
   createdAt?: Date
+  createdBy: Types.ObjectId
   hasMag: boolean
   magLink?: string
 }
@@ -53,11 +63,20 @@ interface storeDoc extends mongoose.Document {
   availableQuantity: number
   ratingsAverage?: number
   ratingsQuantity?: number
+  comments?: [
+    {
+      id?: Types.ObjectId
+      name?: string
+      message?: string
+      createdAt?: Date
+    }
+  ]
   price: number
   hasDiscount?: boolean
   discountKind?: discountKind
   discountedPrice?: number
   createdAt?: Date
+  createdBy: Types.ObjectId
   hasMag: boolean
   magLink?: string
   version: number
@@ -121,6 +140,14 @@ const storeSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    comments: [
+      {
+        id: Types.ObjectId,
+        name: String,
+        message: String,
+        createdAt: Date,
+      },
+    ],
     price: {
       type: Number,
       required: true,
@@ -144,6 +171,9 @@ const storeSchema = new mongoose.Schema(
     discountedPrice: {
       type: Number,
       required: false,
+    },
+    createdBy: {
+      type: Types.ObjectId,
     },
     createdAt: {
       type: Date,
