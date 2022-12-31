@@ -32,6 +32,7 @@ router.post(
       goodKind,
       hasMag,
       magLink,
+      createdBy,
     } = req.body
 
     console.log(req.body)
@@ -59,6 +60,7 @@ router.post(
       goodKind,
       hasMag,
       magLink,
+      createdBy,
     })
     await store.save()
 

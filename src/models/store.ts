@@ -32,7 +32,7 @@ interface storeAttrs {
   discountKind?: discountKind
   discountedPrice?: number
   createdAt?: Date
-  createdBy: Types.ObjectId
+  createdBy?: Types.ObjectId
   hasMag: boolean
   magLink?: string
 }
@@ -76,7 +76,7 @@ interface storeDoc extends mongoose.Document {
   discountKind?: discountKind
   discountedPrice?: number
   createdAt?: Date
-  createdBy: Types.ObjectId
+  createdBy?: Types.ObjectId
   hasMag: boolean
   magLink?: string
   version: number
@@ -174,6 +174,7 @@ const storeSchema = new mongoose.Schema(
     },
     createdBy: {
       type: Types.ObjectId,
+      required: false,
     },
     createdAt: {
       type: Date,
