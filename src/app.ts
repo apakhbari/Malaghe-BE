@@ -66,6 +66,7 @@ app.enable('trust proxy')
 
 app.use(
   cors({
+    credentials: true,
     origin: [
       'https://karachian.darkube.app',
       'http://karachian.darkube.app',
