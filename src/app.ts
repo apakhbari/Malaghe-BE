@@ -62,12 +62,12 @@ const corsOptions = {
   allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
 }
 // intercept pre-flight check for all routes
-app.options('*', cors(corsOptions))
+//app.options('*', cors(corsOptions))
 
 app.use(cors())
 
 // Set security HTTP headers
-app.use(helmet())
+//app.use(helmet())
 
 // Limit requests from same API
 const limiter = rateLimit({
