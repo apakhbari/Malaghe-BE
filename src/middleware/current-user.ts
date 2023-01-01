@@ -28,6 +28,9 @@ export const currentUser = (
   next: NextFunction
 ) => {
   console.log(req.cookies)
+  console.log(req.session)
+  console.log(req.session?.currentUser)
+  console.log(req.session?.jwt)
 
   if (!req.session?.jwt) {
     return next()
