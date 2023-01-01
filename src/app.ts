@@ -140,6 +140,7 @@ app.use(
     signed: false,
     secure: false,
     sameSite: false,
+    httpOnly: false,
   })
 )
 
