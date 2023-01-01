@@ -64,7 +64,7 @@ const corsOptions = {
 // intercept pre-flight check for all routes
 app.options('*', cors(corsOptions))
 
-app.use(cors(corsOptions))
+app.use(cors())
 
 // Set security HTTP headers
 app.use(helmet())
