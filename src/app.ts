@@ -55,17 +55,25 @@ app.set('trust proxy', true)
 
 app.enable('trust proxy')
 
-const corsOptions = {
-  origin: /\.karachian.darkube.app\.com$/, // reqexp will match all prefixes
-  methods: 'GET,HEAD,POST,PATCH,DELETE,OPTIONS',
-  credentials: true, // required to pass
-  allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
-}
+//const corsOptions = {
+//origin: /\.karachian.darkube.app\.com$/, // reqexp will match all prefixes
+//methods: 'GET,HEAD,POST,PATCH,DELETE,OPTIONS',
+//credentials: true, // required to pass
+//allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
+//}
 // intercept pre-flight check for all routes
 //app.options('*', cors(corsOptions))
 
-app.use(cors())
-
+app.use(
+  cors({
+    origin: [
+      'https://karachian.darkube.app',
+      'http://karachian.darkube.app',
+      'https://malaghe-fe.malaghe.svc',
+      'http://malaghe-fe.malaghe.svc',
+    ],
+  })
+)
 // Set security HTTP headers
 //app.use(helmet())
 
