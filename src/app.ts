@@ -64,17 +64,7 @@ app.enable('trust proxy')
 // intercept pre-flight check for all routes
 //app.options('*', cors(corsOptions))
 
-app.use(
-  cors({
-    credentials: true,
-    origin: [
-      'https://karachian.darkube.app',
-      'http://karachian.darkube.app',
-      'https://malaghe-fe.malaghe.svc',
-      'http://malaghe-fe.malaghe.svc',
-    ],
-  })
-)
+app.use(cors())
 // Set security HTTP headers
 //app.use(helmet())
 
