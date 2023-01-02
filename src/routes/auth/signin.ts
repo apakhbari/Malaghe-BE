@@ -5,7 +5,7 @@ import { validateRequest } from '../../middleware/validate-request'
 import { BadRequestError } from '../../errors/bad-request-error'
 
 import { User } from '../../models/user'
-import { Password } from '../../services/password'
+import { Password } from '../../utils/password'
 
 const router = express.Router()
 

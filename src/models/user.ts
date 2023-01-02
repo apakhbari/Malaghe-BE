@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { Password } from '../services/password'
+import { Password } from '../utils/password'
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
 import { UsersRoles } from '../types/users-roles'

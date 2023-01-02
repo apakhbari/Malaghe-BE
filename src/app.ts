@@ -36,8 +36,8 @@ import { findByIDForServiceAuthRouter } from './routes/auth/findbyidforservice-a
 import { updateUserRouter } from './routes/auth/updateuser'
 
 //logging
-import morganMiddleware from './services/morganMiddleware'
-import Logger from './services/logger'
+import morganMiddleware from './utils/morganMiddleware'
+import Logger from './utils/logger'
 
 //security
 import { rateLimit } from 'express-rate-limit'
