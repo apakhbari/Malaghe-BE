@@ -4,8 +4,6 @@ import jwt from 'jsonwebtoken'
 import { UsersRoles } from '../types/users-roles'
 import { UsersGender } from '../types/users-gender'
 
-var Cookies = require('cookies')
-
 interface UserPayload {
   id: string
   mobile: number
@@ -29,32 +27,9 @@ export const currentUser = (
   res: Response,
   next: NextFunction
 ) => {
-  var cookies = new Cookies(req, res)
-
-  var lastVisit1 = cookies.get('currentUser')
-  console.log('lastVisit1: ' + lastVisit1)
-  console.log('-------------------------')
-
-  var lastVisit2 = cookies.get('jwt')
-  console.log('lastVisit2: ' + lastVisit2)
-  console.log('-------------------------')
-
-  console.log('req.cookies: ' + req.cookies)
-  console.log('-------------------------')
-
-  console.log('req.session: ' + req.session)
-  console.log('-------------------------')
-
-  console.log('req.session?.currentUser: ' + req.session?.currentUser)
-  console.log('-------------------------')
-
-  console.log('req.session?.jwt: ' + req.session?.jwt)
-  console.log('-------------------------')
-
   if (!req.session?.jwt) {
     return next()
   }
-  console.log(req.cookies)
   try {
     const payload = jwt.verify(
       req.session.jwt,
