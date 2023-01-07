@@ -9,6 +9,7 @@ interface orderAttrs {
   userName: string
   gender: string
   mobile: number
+  phone?: number
   postalCode?: string
   address?: string
   lat?: string
@@ -29,11 +30,11 @@ interface orderAttrs {
 
   orderStatus?: number
 
-  workflow?: [
+  workflow: [
     {
-      time?: Date
-      orderStatus?: number
-      description?: string
+      time: Date
+      orderStatus: number
+      description: string
     }
   ]
 
@@ -50,7 +51,6 @@ interface orderAttrs {
 
 enum serviceKindEnum {
   repair = 'تعمیر',
-  troubleshooting = 'عیب‌یابی',
   replacement = 'تعویض',
 }
 
@@ -82,6 +82,7 @@ interface orderDoc extends mongoose.Document {
   userName: string
   gender: string
   mobile: number
+  phone?: number
   postalCode?: string
   address?: string
   lat?: string
@@ -102,11 +103,11 @@ interface orderDoc extends mongoose.Document {
 
   orderStatus?: number
 
-  workflow?: [
+  workflow: [
     {
-      time?: Date
-      orderStatus?: number
-      description?: string
+      time: Date
+      orderStatus: number
+      description: string
     }
   ]
 
@@ -148,6 +149,10 @@ const orderSchema = new mongoose.Schema(
     mobile: {
       type: Number,
       required: true,
+    },
+    phone: {
+      type: Number,
+      required: false,
     },
     postalCode: {
       type: String,
@@ -214,7 +219,7 @@ const orderSchema = new mongoose.Schema(
 
     workflow: [
       {
-        time: { type: Date, required: true, default: Date.now },
+        time: Date,
         orderStatus: Number,
         description: String,
       },

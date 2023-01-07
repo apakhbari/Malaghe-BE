@@ -12,6 +12,11 @@ import { Order } from '../../models/order'
 
 const router = express.Router()
 
+var generatedCode = Math.floor(1000 + Math.random() * 9000)
+console.log(generatedCode)
+
+let dateTime = new Date()
+
 router.post(
   '/api/v1/orders',
   //currentUser,
@@ -19,46 +24,53 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const {
-      code,
       userId,
       userName,
       gender,
       mobile,
+      phone,
       postalCode,
       address,
 
+      paymentKind,
       isExpress,
       isService,
       serviceKind,
 
-      workflow,
       products,
     } = req.body
-
     console.log(req.body)
 
     // Make sure the order is not already db
-    const existingOrder = await Order.findOne({ code })
+    const existingOrder = await Order.findOne({ generatedCode })
 
     if (existingOrder) {
-      throw new BadRequestError('product Already in DB!')
+      throw new BadRequestError('please try again')
     }
 
     // Build the store and save it to the database
     const store = Order.build({
-      code,
+      code: generatedCode,
       userId,
       userName,
       gender,
+      phone,
       mobile,
       postalCode,
       address,
 
+      paymentKind,
       isExpress,
       isService,
       serviceKind,
 
-      workflow,
+      workflow: [
+        {
+          time: dateTime,
+          orderStatus: 1,
+          description: 'درخواست شما ثبت شد',
+        },
+      ],
       products,
     })
     await store.save()
