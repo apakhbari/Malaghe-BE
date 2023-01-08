@@ -14,7 +14,7 @@ router.get(
       mobile: Number(req.params.mobileNumber),
     })
       .select(
-        'id code isService serviceKind isDone createdAt overallPrice orderStatus mobile'
+        'id code isService serviceKind isDone createdAt overallPrice orderStatus'
       )
       .sort('-createdAt')
       .limit(30)
