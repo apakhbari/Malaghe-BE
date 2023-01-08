@@ -15,6 +15,7 @@ interface orderAttrs {
   lat?: string
   long?: string
 
+  prepayment?: number
   overallPrice?: number
   hasUsedDiscountCode?: boolean
   discountCode?: string
@@ -22,6 +23,8 @@ interface orderAttrs {
   hasPaid?: boolean
 
   isExpress: boolean
+
+  isClientSide?: boolean
 
   isDone?: boolean
 
@@ -88,6 +91,7 @@ interface orderDoc extends mongoose.Document {
   lat?: string
   long?: string
 
+  prepayment?: number
   overallPrice?: number
   hasUsedDiscountCode?: boolean
   discountCode?: string
@@ -97,6 +101,8 @@ interface orderDoc extends mongoose.Document {
   isExpress: boolean
 
   isDone?: boolean
+
+  isClientSide?: boolean
 
   isService?: boolean
   serviceKind?: serviceKindEnum
@@ -171,6 +177,10 @@ const orderSchema = new mongoose.Schema(
       required: false,
     },
 
+    prepayment: {
+      type: Number,
+      required: false,
+    },
     overallPrice: {
       type: Number,
       required: false,
@@ -198,6 +208,11 @@ const orderSchema = new mongoose.Schema(
       required: false,
     },
 
+    isClientSide: {
+      type: Boolean,
+      required: false,
+    },
+
     isDone: {
       type: Boolean,
       required: true,
@@ -215,6 +230,7 @@ const orderSchema = new mongoose.Schema(
 
     orderStatus: {
       type: Number,
+      required: false,
     },
 
     workflow: [

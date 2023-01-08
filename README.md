@@ -6,7 +6,7 @@
 
 ### TODO:
 
-1- for all of code
+1- for all of code, set proper return codes
 
     res.status(204).json({
       status: 'success',
@@ -14,10 +14,6 @@
     });
 
 2- userClicks in the database model
-
----
-
-http://www.nic.ir/
 
 ---
 
@@ -42,22 +38,6 @@ github: malaghe_utility --> https://github.com/apakhbari/malaghe_utility
 ### Readme.md CheatSheet -->
 
 https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
-
----
-
-## Service Setup:
-
-1- Copy a service
-
-2- Install dependencies
-
-3- Build an image out of service
-
-4- create a kubernetes deployment file
-
-5- set up file sync options in skaffold.yaml file
-
-6- set up routing rules in ingress service
 
 ---
 
@@ -140,9 +120,6 @@ ToDo:
 
 - index: /api/v1/store --> GET
 - new: /api/v1/store --> POST
-
-  yoooooooooo
-
 - show: /api/v1/store/:storeId --> GET
 - patch: /api/v1/mag/:storeId --> PATCH
 - delete: /api/v1/mag/:storeId --> DELETE
@@ -188,36 +165,87 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-# INGRESS-NGINX SERVICE:
+# ORDER SERVICE
+
+### ROUTES:
+
+- /api/v1/orders/:id --> GET
+- /api/v1/orders --> GET
+- /api/v1/orders/service --> POST
 
 <br>
 
-    * host : malaghe.dev *
+### ORDER MODEL:
 
-    /api/v1/users/?(.*)
-    auth-srv:3000
-    ---
+<br>
 
-    /api/v1/mag/?(.*)
-    auth-srv:3000
-    ---
+### - orderSchema -
 
-############################
+| Number |        Field        |      Type       |  required  |
+| :----: | :-----------------: | :-------------: | :--------: |
+|   1    |        code         |     Number      |  ✔-unique  |
+|   -    |          -          |        -        |     -      |
+|   2    |       userId        | Types.ObjectId  |            |
+|   3    |      userName       |     String      |     ✔      |
+|   3    |       gender        |     String      |     ✔      |
+|   4    |       mobile        |     Number      |     ✔      |
+|   5    |        phone        |     Number      |            |
+|   6    |     postalCode      |     String      |            |
+|   7    |       address       |     String      |            |
+|   8    |         lat         |     String      |            |
+|   9    |        long         |     String      |            |
+|   -    |          -          |        -        |     -      |
+|   10   |     prepayment      |     Number      |            |
+|   11   |    overallPrice     |     Number      |            |
+|   11   | hasUsedDiscountCode |     Boolean     |            |
+|   12   |    discountCode     |     String      |            |
+|   13   |     paymentKind     | paymentKindEnum |            |
+|   14   |       hasPaid       |     Boolean     |  d:false   |
+|   -    |          -          |        -        |     -      |
+|   19   |     orderStatus     |     Number      |            |
+|   15   |    isClientSide     |     Boolean     |            |
+|   16   |       isDone        |     Boolean     |  d:false   |
+|   -    |          -          |        -        |     -      |
+|   15   |      isExpress      |     Boolean     |            |
+|   17   |      isService      |     Boolean     |            |
+|   18   |     serviceKind     | serviceKindEnum |            |
+|   20   |     [workflow]      |   [workflow]    |     ✔      |
+|   21   |     [products]      |   [products]    |     ✔      |
+|   22   |      createdAt      |      Date       | d:Date.now |
 
-    path: /api/v1/store/?(.*)
-      backend:
-        serviceName: store-srv
-        servicePort: 3000
+<br>
 
-    path: /api/v1/orders/?(.*)
-      backend:
-        serviceName: orders-srv
-        servicePort: 3000
+### - workflow -
 
-    path: /?(.*)
-      backend:
-        serviceName: client-srv
-        servicePort: 3000
+| Number |    Field    |  Type  |
+| :----: | :---------: | :----: |
+|   1    |    time     |  Date  |
+|   2    | orderStatus | Number |
+|   3    | description | String |
+
+<br>
+
+### - products -
+
+| Number |    Field    |  Type  |
+| :----: | :---------: | :----: |
+|   1    |    title    | String |
+|   2    | description | String |
+|   3    |    price    | number |
+|   4    |  quantity   | number |
+
+<br>
+
+### - orderStatus -
+
+- created = 0, ایجاد شده
+- payment = 1, در انتظار پرداخت
+- transferring = 2, در حال جابجایی
+- received = 3, دریافت‌شده
+- cancelled = 4, مرجوع شده
+
+- troubleshooting = 5, عیب‌یابی
+- repairing = 6, تعمیر
 
 <br>
 

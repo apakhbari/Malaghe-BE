@@ -23,7 +23,8 @@ import { findByIDStoreRouter } from './routes/store/findbyid-store'
 
 //orders routes
 import { indexOrderRouter } from './routes/orders/index-orders'
-import { newOrderRouter } from './routes/orders/new-orders'
+import { newServiceOrderRouter } from './routes/orders/new-service-orders'
+import { newCartOrderRouter } from './routes/orders/new-cart-orders'
 import { findByIDOrdersRouter } from './routes/orders/findbyid-orders'
 
 //auth routes
@@ -151,7 +152,8 @@ app.use(indexStoreRouter)
 app.use(findByIDStoreRouter)
 
 //orders routes
-app.use(newOrderRouter)
+app.use(newServiceOrderRouter)
+app.use(newCartOrderRouter)
 app.use(indexOrderRouter)
 app.use(findByIDOrdersRouter)
 

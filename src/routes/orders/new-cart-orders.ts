@@ -12,13 +12,13 @@ import { Order } from '../../models/order'
 
 const router = express.Router()
 
-var generatedCode = Math.floor(1000 + Math.random() * 9000)
+var generatedCode = Math.floor(10000 + Math.random() * 90000)
 console.log(generatedCode)
 
 let dateTime = new Date()
 
 router.post(
-  '/api/v1/orders',
+  '/api/v1/orders/cart',
   //currentUser,
   //requireAccess,
   validateRequest,
@@ -32,10 +32,10 @@ router.post(
       postalCode,
       address,
 
+      overallPrice,
       paymentKind,
+
       isExpress,
-      isService,
-      serviceKind,
 
       products,
     } = req.body
@@ -59,10 +59,14 @@ router.post(
       postalCode,
       address,
 
+      overallPrice,
       paymentKind,
+
+      orderStatus: 1,
+      isClientSide: false,
+
       isExpress,
-      isService,
-      serviceKind,
+      isService: false,
 
       workflow: [
         {
@@ -79,4 +83,4 @@ router.post(
   }
 )
 
-export { router as newOrderRouter }
+export { router as newCartOrderRouter }
