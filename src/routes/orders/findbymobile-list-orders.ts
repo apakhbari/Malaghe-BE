@@ -13,7 +13,7 @@ router.get(
     const existingOrder = await Order.find({
       mobile: Number(req.params.mobileNumber),
     }).select(
-      'id code isService serviceKind isDone createdAt overallPrice orderStatus'
+      'id code isService serviceKind isDone createdAt overallPrice orderStatus mobile'
     )
 
     if (!existingOrder) {
