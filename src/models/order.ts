@@ -59,16 +59,16 @@ enum serviceKindEnum {
 
 {
   /*
-enum orderStatusEnum {
-  created = 0, //'ایجاد شده',
-  payment = 1, //'در انتظار پرداخت',
-  transferring = 2, //'در حال جابجایی',
-  received = 3, //'دریافت‌شده',
-  cancelled = 4, //'مرجوع شده',
+  const orderStatus = {
+    1: 'ایجاد شده',
+    2: 'در انتظار پرداخت',
+    3: 'در حال جابجایی',
+    4: 'دریافت‌شده',
+    5: 'مرجوع شده',
 
-  troubleshooting = 5, //'عیب‌یابی',
-  repairing = 6, //'تعمیر',
-}
+    6: 'عیب‌یابی',
+    7: 'تعمیر',
+  }
 */
 }
 

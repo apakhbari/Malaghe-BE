@@ -12,9 +12,12 @@ router.get(
   async (req: Request, res: Response) => {
     const existingOrder = await Order.find({
       mobile: Number(req.params.mobileNumber),
-    }).select(
-      'id code isService serviceKind isDone createdAt overallPrice orderStatus mobile'
-    )
+    })
+      .select(
+        'id code isService serviceKind isDone createdAt overallPrice orderStatus mobile'
+      )
+      .sort('-createdAt')
+      .limit(30)
 
     if (!existingOrder) {
       throw new BadRequestError('finding by mobileNumber failed')
