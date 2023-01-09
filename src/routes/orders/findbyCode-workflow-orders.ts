@@ -8,16 +8,18 @@ const ObjectId = require('mongodb').ObjectId
 const router = express.Router()
 
 router.get(
-  '/api/v1/orders/workflow/:id',
+  '/api/v1/orders/workflow/:code',
   async (req: Request, res: Response) => {
-    const existingOrder = await Order.findById(req.params.id).select('workflow')
+    const existingOrder = await Order.find({
+      code: Number(req.params.code),
+    }).select('workflow')
 
     if (!existingOrder) {
-      throw new BadRequestError('find order by id failed')
+      throw new BadRequestError('find order by code failed')
     }
 
     res.send(existingOrder)
   }
 )
 
-export { router as findByIDForWorkFlowOrdersRouter }
+export { router as findByCodeForWorkFlowOrdersRouter }
