@@ -33,10 +33,6 @@ admin / op:
 
 3- sign in
 
-user:
-
-5- stat in dashboard
-
 ---
 
 ### ⌘K V --> split view
@@ -191,12 +187,16 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 ### ROUTES:
 
+- /api/v1/orders --> GET
+- /api/v1/orders/list --> GET OP
+- /api/v1/orders/list/op-side --> GET OP
 - /api/v1/orders/:id --> GET
 - /api/v1/orders/stat/:id --> GET
 - /api/v1/orders/list/:mobileNumber --> GET
-- /api/v1/orders --> GET
+- /api/v1/orders/workflow/:code --> GET
+
 - /api/v1/orders/service --> POST
-- /api/v1/orders/workflow/:id --> GET
+- /api/v1/orders/cart --> POST
 
 <br>
 

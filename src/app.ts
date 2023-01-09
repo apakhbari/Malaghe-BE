@@ -29,6 +29,8 @@ import { findByIDOrdersRouter } from './routes/orders/findbyid-orders'
 import { findByMobileForListOrdersRouter } from './routes/orders/findbymobile-list-orders'
 import { findByCodeForWorkFlowOrdersRouter } from './routes/orders/findbyCode-workflow-orders'
 import { countByIdForStatOrdersRouter } from './routes/orders/countbyid-stat-orders'
+import { indexOrderOpSideRouter } from './routes/orders/index-list-orders-opSide'
+import { indexListOrderRouter } from './routes/orders/index-list-orders'
 
 //auth routes
 import { currentUserRouter } from './routes/auth/current-user'
@@ -70,7 +72,7 @@ app.enable('trust proxy')
 
 app.use(cors())
 // Set security HTTP headers
-//app.use(helmet())
+app.use(helmet())
 
 // Limit requests from same API
 const limiter = rateLimit({
@@ -162,6 +164,8 @@ app.use(findByIDOrdersRouter)
 app.use(findByMobileForListOrdersRouter)
 app.use(findByCodeForWorkFlowOrdersRouter)
 app.use(countByIdForStatOrdersRouter)
+app.use(indexListOrderRouter)
+app.use(indexOrderOpSideRouter)
 
 app.all('*', async () => {
   throw new NotFoundError()
