@@ -9,11 +9,11 @@ const router = express.Router()
 
 router.get('/api/v1/orders/stat/:id', async (req: Request, res: Response) => {
   const allOrders = await Order.countDocuments({
-    id: Number(req.params.id),
+    userId: req.params.id,
   }).exec()
 
   const DoneOrder = await Order.countDocuments({
-    id: Number(req.params.id),
+    userId: req.params.id,
     isDone: true,
   }).exec()
 
