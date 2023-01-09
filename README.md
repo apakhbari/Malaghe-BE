@@ -35,8 +35,6 @@ admin / op:
 
 user:
 
-2- quantity in cart context
-
 5- stat in dashboard
 
 ---
@@ -194,6 +192,7 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 ### ROUTES:
 
 - /api/v1/orders/:id --> GET
+- /api/v1/orders/stat/:id --> GET
 - /api/v1/orders/list/:mobileNumber --> GET
 - /api/v1/orders --> GET
 - /api/v1/orders/service --> POST
