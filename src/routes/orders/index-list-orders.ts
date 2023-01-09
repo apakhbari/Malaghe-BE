@@ -4,7 +4,7 @@ import { Order } from '../../models/order'
 const router = express.Router()
 
 router.get('/api/v1/orders/list', async (req: Request, res: Response) => {
-  const existingOrder = await Order.find({})
+  const existingOrder = await Order.find()
     .select(
       'id code userName mobile isService serviceKind isDone createdAt overallPrice orderStatus'
     )
