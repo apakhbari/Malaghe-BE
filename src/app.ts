@@ -27,6 +27,7 @@ import { newServiceOrderRouter } from './routes/orders/new-service-orders'
 import { newCartOrderRouter } from './routes/orders/new-cart-orders'
 import { findByIDOrdersRouter } from './routes/orders/findbyid-orders'
 import { findByMobileForListOrdersRouter } from './routes/orders/findbymobile-list-orders'
+import { findByIDForWorkFlowOrdersRouter } from './routes/orders/findbyid-workflow-orders'
 
 //auth routes
 import { currentUserRouter } from './routes/auth/current-user'
@@ -158,6 +159,7 @@ app.use(newCartOrderRouter)
 app.use(indexOrderRouter)
 app.use(findByIDOrdersRouter)
 app.use(findByMobileForListOrdersRouter)
+app.use(findByIDForWorkFlowOrdersRouter)
 
 app.all('*', async () => {
   throw new NotFoundError()

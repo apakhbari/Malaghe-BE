@@ -15,6 +15,12 @@
 
 ## 2- userClicks in the database model
 
+production:
+gender : 0,1 instead of mard, zan
+2- paymentKind : number instead of text
+3- workflow description number instead of text
+1- store: rendering props
+
 temp todo:
 
 1- png favicon
@@ -29,19 +35,9 @@ admin / op:
 
 user:
 
-1- /sefaresh/list
-
-2- create page for each sefaresh
-
 2- quantity in cart context
 
-4- delete footer from service
-
 5- stat in dashboard
-
-store:
-
-1- rendering props
 
 ---
 
@@ -201,6 +197,7 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 - /api/v1/orders/list/:mobileNumber --> GET
 - /api/v1/orders --> GET
 - /api/v1/orders/service --> POST
+- /api/v1/orders/workflow/:id --> GET
 
 <br>
 
