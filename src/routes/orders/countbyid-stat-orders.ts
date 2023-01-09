@@ -20,7 +20,7 @@ router.get('/api/v1/orders/stat/:id', async (req: Request, res: Response) => {
   const data = {
     allOrders,
     DoneOrder,
-    inProgree: allOrders - DoneOrder,
+    inProgress: allOrders - DoneOrder,
   }
 
   res.send(data)
