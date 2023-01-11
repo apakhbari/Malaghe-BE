@@ -1,14 +1,7 @@
 import 'express-async-errors'
 import mongoose from 'mongoose'
 
-const {
-  MONGO_USER,
-  MONGO_PASSWORD,
-  MONGO_IP,
-  MONGO_PORT,
-  REDIS_URL,
-  REDIS_PORT,
-} = require('./config/config')
+const { MONGO_USER, MONGO_PASSWORD, MONGO_ADDRESS } = require('./config/config')
 
 import { app } from './app'
 
@@ -25,15 +18,11 @@ const start = async () => {
   }
 
   try {
-    //mongodb://apa1234:mypassword@mongo:27017
+    //mongodb://root:woK9gwoVNT1tIMA11dwfZOjTihTV152a@mongodb.malaghe.svc:27017
 
-    //mongodb://mongo:27017/mongo
-    //const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`
+    //const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}` mongodb.malaghe.svc:27017
 
-    //const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}`
-
-    const mongoURL =
-      'mongodb://root:woK9gwoVNT1tIMA11dwfZOjTihTV152a@mongodb.malaghe.svc:27017'
+    const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_ADDRESS}`
 
     console.log(mongoURL)
 

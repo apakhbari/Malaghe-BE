@@ -42,8 +42,6 @@ router.post(
   async (req: Request, res: Response) => {
     const { fiName, laName, gender, mobile, password } = req.body
 
-    //console.log(req.body)
-
     const existingUser = await User.findOne({ mobile })
 
     if (existingUser) {

@@ -1,10 +1,28 @@
-# Malaghe-BackEnd
+# **Malaghe™ - BackEnd**
 
 ![ascii_malaghe_be.png](ascii_malaghe_be.png)
 
 ---
 
-### TODO:
+<br>
+
+## **Description** :
+
+## BackEnd of Malaghe™ Project. Developed using Typescript, Express.js, mongodb, Docker, nginx (reverse proxy).
+
+<br>
+
+---
+
+## **Links**:
+
+## FrontEnd github: --> https://github.com/apakhbari/Malaghe-FE
+
+## docker --> https://hub.docker.com/repository/docker/apakhbari/malaghe
+
+---
+
+## **TODO**:
 
 1- for all of code, set proper return codes
 
@@ -13,15 +31,16 @@
       data: null
     });
 
-## 2- userClicks in the database model
+2- userClicks in the database model
 
-production:
+### **production:**
+
 gender : 0,1 instead of mard, zan
 2- paymentKind : number instead of text
 3- workflow description number instead of text
 1- store: rendering props
 
-temp todo:
+### **temp todo:**
 
 1- png favicon
 
@@ -43,16 +62,6 @@ admin / op:
 
 ---
 
-## Links:
-
-github: malaghe --> https://github.com/apakhbari/malaghe
-
-docker --> https://hub.docker.com/repository/docker/apakhbari/malaghe
-
-github: malaghe_utility --> https://github.com/apakhbari/malaghe_utility
-
----
-
 ### Readme.md CheatSheet -->
 
 https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
@@ -61,9 +70,9 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
 
 <br>
 
-# USER SERVICE
+# **USER SERVICE**
 
-### ToDo:
+### **ToDo**:
 
 - refactor routes/signin
 - refactor routes/currentuser
@@ -73,7 +82,7 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
 
 <br>
 
-### ROUTES:
+### **ROUTES**:
 
 - /api/v1/users/signin --> POST
 - /api/v1/users/signout --> POST
@@ -82,11 +91,11 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
 
 <br>
 
-### USER MODEL:
+### **USER MODEL**:
 
 <br>
 
-### - userSchema -
+### **- userSchema -**
 
 Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength --> mx
 
@@ -107,7 +116,7 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-### - locationsAttrs -
+### **- locationsAttrs -**
 
 | Number |    Field    |        Type        |
 | :----: | :---------: | :----------------: |
@@ -117,7 +126,7 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-### - coordinatesAttrs -
+### **- coordinatesAttrs -**
 
 | Number | Field |  Type  |
 | :----: | :---: | :----: |
@@ -128,13 +137,13 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-# STORE SERVICE
+# **STORE SERVICE**
 
-ToDo:
+**ToDo**:
 
 <br>
 
-### ROUTES:
+### **ROUTES**:
 
 - index: /api/v1/store --> GET
 - new: /api/v1/store --> POST
@@ -142,13 +151,11 @@ ToDo:
 - patch: /api/v1/mag/:storeId --> PATCH
 - delete: /api/v1/mag/:storeId --> DELETE
 
-### EVENTS:
-
-### STORE MODEL:
+### **STORE MODEL**:
 
 <br>
 
-### - storeSchema -
+### **- storeSchema -**
 
 Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength --> mx
 
@@ -172,7 +179,7 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-### - discountKind enum -
+### **- discountKind enum -**
 
 - percentage
 - exactPrice
@@ -183,9 +190,9 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-# ORDER SERVICE
+# **ORDER SERVICE**
 
-### ROUTES:
+### **ROUTES:**
 
 - /api/v1/orders --> GET
 - /api/v1/orders/list --> GET OP
@@ -200,11 +207,11 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-### ORDER MODEL:
+### **ORDER MODEL:**
 
 <br>
 
-### - orderSchema -
+### **- orderSchema -**
 
 | Number |        Field        |      Type       |  required  |
 | :----: | :-----------------: | :-------------: | :--------: |
@@ -240,7 +247,7 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-### - workflow -
+### **- workflow -**
 
 | Number |    Field    |  Type  |
 | :----: | :---------: | :----: |
@@ -250,7 +257,7 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-### - products -
+### **- products -**
 
 | Number |    Field    |  Type  |
 | :----: | :---------: | :----: |
@@ -261,7 +268,7 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
-### - orderStatus -
+### **- orderStatus -**
 
 - created = 0, ایجاد شده
 - payment = 1, در انتظار پرداخت
@@ -276,8 +283,8 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 ---
 
-## Developed by APA, 2022
-
 <br>
+
+# **© APA, 2022-2023, all rights reserved**
 
 ![ascii_apa.png](ascii_apa.png)

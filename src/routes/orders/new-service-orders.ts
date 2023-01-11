@@ -13,7 +13,6 @@ import { Order } from '../../models/order'
 const router = express.Router()
 
 var generatedCode = Math.floor(10000 + Math.random() * 90000)
-console.log(generatedCode)
 
 let dateTime = new Date()
 
@@ -38,7 +37,6 @@ router.post(
 
       products,
     } = req.body
-    console.log(req.body)
 
     // Make sure the order is not already db
     const existingOrder = await Order.findOne({ generatedCode })

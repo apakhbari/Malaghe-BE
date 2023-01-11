@@ -35,8 +35,6 @@ router.post(
       createdBy,
     } = req.body
 
-    console.log(req.body)
-
     // Make sure the post is not already db
     const product = await Store.findOne({ title })
 
