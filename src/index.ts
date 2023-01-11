@@ -13,15 +13,11 @@ const start = async () => {
     throw new Error('process.env MONGO_USER , MONGO_PASSWORD  must be defined')
   }
 
-  if (!process.env.MONGO_URI) {
-    throw new Error('MONGO_URI must be defined')
+  if (!process.env.MONGO_ADDRESS) {
+    throw new Error('MONGO_ADDRESS must be defined')
   }
 
   try {
-    //mongodb://root:woK9gwoVNT1tIMA11dwfZOjTihTV152a@mongodb.malaghe.svc:27017
-
-    //const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}` mongodb.malaghe.svc:27017
-
     const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_ADDRESS}`
 
     console.log(mongoURL)
