@@ -26,6 +26,20 @@ const start = async () => {
       useCreateIndex: true,
     })
     console.log('Connected to mongodb!')
+
+    console.log(`########################################
+    developed by:
+      _______  _______  _______
+     |   _   ||       ||   _   |
+     |  |_|  ||    _  ||  |_|  |
+     |       ||   |_| ||       |
+     |       ||    ___||       |
+     |   _   ||   |    |   _   |
+     |__| |__||___|    |__| |__|
+     © 2022-2023, APA, All Rights Reserved.
+     Happy Hacking!
+     ########################################
+     `)
   } catch (err) {
     console.log(err)
   }
@@ -33,21 +47,6 @@ const start = async () => {
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!')
-
-  console.log(`########################################
-  \n
-  developed by:
-    _______  _______  _______
-   |   _   ||       ||   _   |
-   |  |_|  ||    _  ||  |_|  |
-   |       ||   |_| ||       |
-   |       ||    ___||       |
-   |   _   ||   |    |   _   |
-   |__| |__||___|    |__| |__|
-   \n
-   Happy Hacking!\n
-   ########################################
-   `)
 })
 
 start()
