@@ -20,8 +20,6 @@ const start = async () => {
   try {
     const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_ADDRESS}`
 
-    console.log(mongoURL)
-
     await mongoose.connect(mongoURL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -35,6 +33,21 @@ const start = async () => {
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!')
+
+  console.log(`########################################
+  \n
+  developed by:
+    _______  _______  _______
+   |   _   ||       ||   _   |
+   |  |_|  ||    _  ||  |_|  |
+   |       ||   |_| ||       |
+   |       ||    ___||       |
+   |   _   ||   |    |   _   |
+   |__| |__||___|    |__| |__|
+   \n
+   Happy Hacking!\n
+   ########################################
+   `)
 })
 
 start()
