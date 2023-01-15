@@ -9,7 +9,7 @@ const router = express.Router()
 
 router.get('/api/v1/users/service/:id', async (req: Request, res: Response) => {
   const existingUser = await User.findById(req.params.id).select(
-    'id fiName laName mobile phone locations gender'
+    'id fiName laName mobile phone locations isMale'
   )
 
   if (!existingUser) {

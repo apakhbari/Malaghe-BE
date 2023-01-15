@@ -11,7 +11,7 @@ router.get(
   '/api/v1/orders/list/:mobileNumber',
   async (req: Request, res: Response) => {
     const existingOrder = await Order.find({
-      mobile: Number(req.params.mobileNumber),
+      mobile: req.params.mobileNumber,
     })
       .select(
         'id code isService serviceKind isDone createdAt overallPrice orderStatus'

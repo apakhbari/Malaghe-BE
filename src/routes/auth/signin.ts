@@ -50,7 +50,7 @@ router.post(
         mobile: existingUser.mobile,
         fiName: existingUser.fiName,
         laName: existingUser.laName,
-        gender: existingUser.gender,
+        isMale: existingUser.isMale,
         role: existingUser.role,
       },
       process.env.JWT_KEY!

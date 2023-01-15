@@ -2,14 +2,13 @@ import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 
 import { UsersRoles } from '../types/users-roles'
-import { UsersGender } from '../types/users-gender'
 
 interface UserPayload {
   id: string
   mobile: number
   fiName: string
   laName: string
-  gender: UsersGender
+  isMale: boolean
   role: UsersRoles
 }
 

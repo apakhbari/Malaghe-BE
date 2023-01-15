@@ -24,7 +24,7 @@ router.post(
       .isLength({ min: 2, max: 20 })
       .withMessage('last Name must be valid'),
 
-    body('gender').trim().notEmpty().withMessage('gender must be valid'),
+    body('isMale').trim().notEmpty().withMessage('gender must be valid'),
 
     body('mobile')
       .trim()
@@ -40,7 +40,7 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { fiName, laName, gender, mobile, password } = req.body
+    const { fiName, laName, isMale, mobile, password } = req.body
 
     const existingUser = await User.findOne({ mobile })
 
@@ -48,7 +48,7 @@ router.post(
       throw new BadRequestError('mobile in use')
     }
 
-    const user = User.build({ fiName, laName, gender, mobile, password })
+    const user = User.build({ fiName, laName, isMale, mobile, password })
     await user.save()
 
     // Generate JWT
@@ -58,7 +58,7 @@ router.post(
         mobile: user.mobile,
         fiName: user.fiName,
         laName: user.laName,
-        gender: user.gender,
+        isMale: user.isMale,
         role: user.role,
       },
       process.env.JWT_KEY!

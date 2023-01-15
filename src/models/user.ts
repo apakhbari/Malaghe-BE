@@ -2,14 +2,10 @@ import mongoose from 'mongoose'
 import { Password } from '../utils/password'
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
-import { UsersRoles } from '../types/users-roles'
-import { UsersGender } from '../types/users-gender'
-
-// An interface that describes the properties that are required to create a new User
 interface UserAttrs {
   fiName: string
   laName: string
-  gender: UsersGender
+  isMale: boolean
   email?: string
   mobile: string
   phone?: string
@@ -22,30 +18,21 @@ interface UserAttrs {
       lat?: string
     }
   ]
-  role?: UsersRoles
+  role?: number
   password: string
   isActive?: Boolean
   createdAt?: Date
   passwordResetToken?: string
 }
 
-interface locationsAttrs {
-  long: string
-  lat: string
-  address: string
-  postalCode: string
-}
-
-// An interface that describes the properties that a User Model has
 interface UserModel extends mongoose.Model<UserDoc> {
   build(attrs: UserAttrs): UserDoc
 }
 
-// An interface that describes the properties that a User Document has
 interface UserDoc extends mongoose.Document {
   fiName: string
   laName: string
-  gender: UsersGender
+  isMale: boolean
   email?: string
   mobile: string
   phone?: string
@@ -58,7 +45,7 @@ interface UserDoc extends mongoose.Document {
       lat?: string
     }
   ]
-  role?: UsersRoles
+  role?: number
   password: string
   isActive?: Boolean
   createdAt?: Date
@@ -71,36 +58,29 @@ const userSchema = new mongoose.Schema(
     fiName: {
       type: String,
       required: true,
-      trim: true,
     },
     laName: {
       type: String,
       required: true,
-      trim: true,
     },
-    gender: {
-      type: UsersGender,
+    isMale: {
+      type: Boolean,
       required: true,
     },
     email: {
       type: String,
-      lowercase: true,
-      trim: true,
-      default: 'تخصیص داده نشده',
     },
     mobile: {
       type: String,
       required: true,
-      trim: true,
       unique: true,
     },
     phone: {
       type: String,
-      default: 'تخصیص داده نشده',
     },
     photo: {
       type: String,
-      default: 'تخصیص داده نشده',
+      required: false,
     },
     locations: [
       {
@@ -111,16 +91,13 @@ const userSchema = new mongoose.Schema(
       },
     ],
     role: {
-      type: UsersRoles,
+      type: Number,
       required: true,
-      default: UsersRoles.User,
+      default: 0,
     },
     password: {
       type: String,
       required: true,
-      minlength: 8,
-      maxlength: 20,
-      trim: true,
     },
     isActive: {
       type: Boolean,
@@ -134,7 +111,7 @@ const userSchema = new mongoose.Schema(
     },
     passwordResetToken: {
       type: String,
-      default: 'تخصیص داده نشده',
+      required: false,
     },
   },
   {

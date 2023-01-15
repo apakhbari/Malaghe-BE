@@ -7,9 +7,9 @@ interface orderAttrs {
 
   userId?: Types.ObjectId
   userName: string
-  gender: string
-  mobile: number
-  phone?: number
+  isMale: boolean
+  mobile: string
+  phone?: string
   postalCode?: string
   address?: string
   lat?: string
@@ -17,34 +17,34 @@ interface orderAttrs {
 
   prepayment?: number
   overallPrice?: number
-  hasUsedDiscountCode?: boolean
+  usedDiscountCode?: boolean
   discountCode?: string
-  paymentKind?: paymentKindEnum
+  paymentKind?: number
   hasPaid?: boolean
 
-  isExpress: boolean
-
+  orderStatus: number
   isClientSide?: boolean
-
   isDone?: boolean
 
-  isService?: boolean
-  serviceKind?: serviceKindEnum
-
-  orderStatus?: number
+  isExpress?: boolean
+  isService: boolean
+  serviceKind?: number
 
   workflow: [
     {
       time: Date
-      orderStatus: number
-      description: string
+      flowStatus: number
+      description?: string
+      by?: number
+      attachment?: string
     }
   ]
 
-  products?: [
+  products: [
     {
-      title?: string
+      title: string
       description?: string
+      initialPrice?: number
       price?: number
       quantity?: number
     }
@@ -52,13 +52,15 @@ interface orderAttrs {
   createdAt?: Date
 }
 
-enum serviceKindEnum {
-  repair = 'تعمیر',
-  replacement = 'تعویض',
+{
+  /*
+
+const serviceKind = {
+  1: 'تعمیر',
+  2:  'تعویض',
 }
 
 {
-  /*
   const orderStatus = {
     1: 'ایجاد شده',
     2: 'در انتظار پرداخت',
@@ -69,13 +71,14 @@ enum serviceKindEnum {
     6: 'عیب‌یابی',
     7: 'تعمیر',
   }
-*/
-}
 
-enum paymentKindEnum {
-  portal = 'درگاه بانکی',
-  card = 'کارت به کارت',
-  inPerson = 'حضوری',
+/*
+const paymentKind = {
+  1: 'درگاه بانکی',
+  2: 'کارت به کارت',
+  3: 'حضوری',
+}
+*/
 }
 
 interface orderDoc extends mongoose.Document {
@@ -83,9 +86,9 @@ interface orderDoc extends mongoose.Document {
 
   userId?: Types.ObjectId
   userName: string
-  gender: string
-  mobile: number
-  phone?: number
+  isMale: boolean
+  mobile: string
+  phone?: string
   postalCode?: string
   address?: string
   lat?: string
@@ -93,34 +96,34 @@ interface orderDoc extends mongoose.Document {
 
   prepayment?: number
   overallPrice?: number
-  hasUsedDiscountCode?: boolean
+  usedDiscountCode?: boolean
   discountCode?: string
-  paymentKind?: paymentKindEnum
+  paymentKind?: number
   hasPaid?: boolean
 
-  isExpress: boolean
-
+  orderStatus: number
+  isClientSide?: boolean
   isDone?: boolean
 
-  isClientSide?: boolean
-
-  isService?: boolean
-  serviceKind?: serviceKindEnum
-
-  orderStatus?: number
+  isExpress?: boolean
+  isService: boolean
+  serviceKind?: number
 
   workflow: [
     {
       time: Date
-      orderStatus: number
-      description: string
+      flowStatus: number
+      description?: string
+      by?: number
+      attachment?: string
     }
   ]
 
-  products?: [
+  products: [
     {
-      title?: string
+      title: string
       description?: string
+      initialPrice?: number
       price?: number
       quantity?: number
     }
@@ -140,6 +143,7 @@ const orderSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+
     userId: {
       type: Types.ObjectId,
       required: false,
@@ -148,16 +152,16 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    gender: {
-      type: String,
+    isMale: {
+      type: Boolean,
       required: true,
     },
     mobile: {
-      type: Number,
+      type: String,
       required: true,
     },
     phone: {
-      type: Number,
+      type: String,
       required: false,
     },
     postalCode: {
@@ -185,7 +189,7 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
-    hasUsedDiscountCode: {
+    usedDiscountCode: {
       type: Boolean,
       required: false,
     },
@@ -194,10 +198,24 @@ const orderSchema = new mongoose.Schema(
       required: false,
     },
     paymentKind: {
-      type: paymentKindEnum,
+      type: Number,
       required: false,
     },
     hasPaid: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+
+    orderStatus: {
+      type: Number,
+      required: true,
+    },
+    isClientSide: {
+      type: Boolean,
+      required: false,
+    },
+    isDone: {
       type: Boolean,
       required: true,
       default: false,
@@ -207,28 +225,11 @@ const orderSchema = new mongoose.Schema(
       type: Boolean,
       required: false,
     },
-
-    isClientSide: {
-      type: Boolean,
-      required: false,
-    },
-
-    isDone: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-
     isService: {
       type: Boolean,
-      required: false,
+      required: true,
     },
     serviceKind: {
-      type: serviceKindEnum,
-      required: false,
-    },
-
-    orderStatus: {
       type: Number,
       required: false,
     },
@@ -236,8 +237,10 @@ const orderSchema = new mongoose.Schema(
     workflow: [
       {
         time: Date,
-        orderStatus: Number,
+        flowStatus: Number,
         description: String,
+        by: Number,
+        attachment: String,
       },
     ],
 
@@ -245,10 +248,12 @@ const orderSchema = new mongoose.Schema(
       {
         title: String,
         description: String,
+        initialPrice: Number,
         price: Number,
         quantity: Number,
       },
     ],
+
     createdAt: {
       type: Date,
       required: true,

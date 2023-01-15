@@ -25,7 +25,7 @@ router.post(
     const {
       userId,
       userName,
-      gender,
+      isMale,
       mobile,
       phone,
       postalCode,
@@ -42,7 +42,7 @@ router.post(
     const existingOrder = await Order.findOne({ generatedCode })
 
     if (existingOrder) {
-      throw new BadRequestError('please try again')
+      throw new BadRequestError('لطفا دوبارع تلاش کنید. code in use')
     }
 
     // Build the store and save it to the database
@@ -50,7 +50,7 @@ router.post(
       code: generatedCode,
       userId,
       userName,
-      gender,
+      isMale,
       phone,
       mobile,
       postalCode,
@@ -68,8 +68,7 @@ router.post(
       workflow: [
         {
           time: dateTime,
-          orderStatus: 1,
-          description: 'درخواست شما ثبت شد',
+          flowStatus: 1,
         },
       ],
       products,

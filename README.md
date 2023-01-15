@@ -8,7 +8,7 @@
 
 ## **Description** :
 
-## BackEnd of Malaghe™ Project. Developed using Typescript, Express.js, mongodb, Docker, nginx (reverse proxy).
+### BackEnd of Malaghe™ Project. Developed using Typescript, Express.js, mongodb, Docker, nginx (reverse proxy).
 
 <br>
 
@@ -16,9 +16,9 @@
 
 ## **Links**:
 
-## FrontEnd github: --> https://github.com/apakhbari/Malaghe-FE
+### FrontEnd github: --> https://github.com/apakhbari/Malaghe-FE
 
-## docker --> https://hub.docker.com/repository/docker/apakhbari/malaghe
+### docker --> https://hub.docker.com/repository/docker/apakhbari/malaghe
 
 ---
 
@@ -33,38 +33,9 @@
 
 2- userClicks in the database model
 
-### **production:**
+3- nginx hardening
 
-gender : 0,1 instead of mard, zan
-2- paymentKind : number instead of text
-3- workflow description number instead of text
-1- store: rendering props
-
-### **temp todo:**
-
-1- png favicon
-
-admin / op:
-
-1- admin dashboard
-
-2- id op in new-store
-
-3- sign in
-
----
-
-### ⌘K V --> split view
-
-### ⇧⌘V --> separate view
-
-### code /etc/hosts
-
----
-
-### Readme.md CheatSheet -->
-
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
+4- nginx custom error page
 
 ---
 
@@ -72,66 +43,62 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
 
 # **USER SERVICE**
 
-### **ToDo**:
-
-- refactor routes/signin
-- refactor routes/currentuser
-- refactor routes/signout
-
-- delete user route
-
-<br>
-
 ### **ROUTES**:
 
+- /api/v1/users/currentuser --> GET
+- /api/v1/users/:id --> GET
+- /api/v1/users/service/:id --> GET
+- &
 - /api/v1/users/signin --> POST
 - /api/v1/users/signout --> POST
 - /api/v1/users/signup --> POST
-- '/api/v1/users/currentuser --> GET
+- &
+- /api/v1/users/:id --> PUT
 
 <br>
 
 ### **USER MODEL**:
 
-<br>
-
 ### **- userSchema -**
 
-Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength --> mx
+Flags : d --> default
 
-| Number |       Field        |        Type        | required |  flags  |
-| :----: | :----------------: | :----------------: | :------: | :-----: |
-|   1    |       fiName       |       String       |    ✔     |    t    |
-|   2    |       laName       |       String       |    ✔     |    t    |
-|   3    |       gender       |       Number       |    ✔     |         |
-|   4    |       email        |       String       |          |   t-l   |
-|   5    |       mobile       |       String       |    ✔     |    t    |
-|   6    |       photo        |       String       |          |         |
-|   7    |     locations      | `[locationsAttrs]` |          |         |
-|   8    |        role        |     UsersRoles     |  d:user  |         |
-|   9    |      password      |       String       |    ✔     | t-mn-mx |
-|   10   |      isActive      |      Boolean       |  d:true  |         |
-|   11   |     createdAt      |        Date        |  d:now   |         |
-|   12   | passwordResetToken |       String       |          |         |
-
-<br>
-
-### **- locationsAttrs -**
-
-| Number |    Field    |        Type        |
-| :----: | :---------: | :----------------: |
-|   1    | coordinates | `coordinatesAttrs` |
-|   2    |   address   |       String       |
-|   3    | postalCode  |       Number       |
+| Number |       Field        |     Type      | required |
+| :----: | :----------------: | :-----------: | :------: |
+|   1    |       fiName       |    String     |    ✔     |
+|   2    |       laName       |    String     |    ✔     |
+|   3    |       isMale       |    boolean    |    ✔     |
+|   4    |       email        |    String     |          |
+|   5    |       mobile       |    String     |    ✔     |
+|   6    |       phone        |    String     |          |
+|   7    |       photo        |    String     |          |
+|   8    |     locations      | `[locations]` |          |
+|   9    |        role        |    Number     |   d:0    |
+|   10   |      password      |    String     |    ✔     |
+|   11   |      isActive      |    Boolean    |  d:true  |
+|   12   |     createdAt      |     Date      |  d:now   |
+|   13   | passwordResetToken |    String     |          |
 
 <br>
 
-### **- coordinatesAttrs -**
+### **- locations -**
 
-| Number | Field |  Type  |
-| :----: | :---: | :----: |
-|   1    | long  | number |
-|   2    |  lat  | number |
+| Number |   Field    |  Type  | required |
+| :----: | :--------: | :----: | :------: |
+|   1    |  address   | String |          |
+|   2    | postalCode | String |          |
+|   3    |    lat     | String |          |
+|   4    |    long    | String |          |
+
+<br>
+
+### **- role -**
+
+- User = 0,
+- Admin = 1993,
+- Operator = 3,
+- Technician = 5,
+- Transporter = 7,
 
 ---
 
@@ -139,52 +106,79 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 # **STORE SERVICE**
 
-**ToDo**:
-
-<br>
-
 ### **ROUTES**:
 
-- index: /api/v1/store --> GET
-- new: /api/v1/store --> POST
-- show: /api/v1/store/:storeId --> GET
-- patch: /api/v1/mag/:storeId --> PATCH
-- delete: /api/v1/mag/:storeId --> DELETE
+- /api/v1/store --> GET
+- /api/v1/store/:id --> GET
+- &
+- /api/v1/store --> POST
+
+<br>
 
 ### **STORE MODEL**:
 
-<br>
-
 ### **- storeSchema -**
 
-Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength --> mx
+Flags : d --> default
 
-| Number |       Field       |      Type      | required |  flags  |
-| :----: | :---------------: | :------------: | :------: | :-----: |
-|   1    |       title       |     String     | ✔ unique | t-mn-mx |
-|   2    |    description    |     String     |          |  t-mn   |
-|   3    |      summary      |    [String]    |    ✔     | t-mn-mx |
-|   4    |      volumes      |     String     |          |    t    |
-|   5    |    imageCover     |     String     |    ✔     |         |
-|   6    |      photos       |    [String]    |          |         |
-|   7    | availableQuantity |     Number     |    ✔     |         |
-|   8    |  ratingsAverage   |     Number     |   d:5    |         |
-|   9    |  ratingsQuantity  |     Number     |   d:0    |         |
-|   10   |       price       |     Number     |    ✔     |         |
-|   11   |    hasDiscount    |    Boolean     | d:false  |         |
-|   12   |   discountKind    | `discountKind` |          |         |
-|   13   |  discountedPrice  |     Number     |          |         |
-|   14   |     createdAt     |      Date      |  d:now   |         |
-|   15   |      magData      |  `[magAttrs]`  |          |         |
+| Number |       Field       |      Type      | required |
+| :----: | :---------------: | :------------: | :------: |
+|   1    |       title       |     String     | ✔ unique |
+|   2    |    description    |     String     |          |
+|   3    |      summary      |     String     |          |
+|   4    |     goodKind      |     Number     |          |
+|   -    |         -         |       -        |    -     |
+|   5    |      madeIn       |     Number     |          |
+|   6    |     material      |     String     |          |
+|   7    |       width       |     Number     |          |
+|   8    |      length       |     Number     |          |
+|   9    |      height       |     Number     |          |
+|   10   |      weight       |     Number     |          |
+|   -    |         -         |       -        |    -     |
+|   11   |     photoNum      |     Number     |          |
+|   12   |      photos       |    [String]    |          |
+|   -    |         -         |       -        |    -     |
+|   13   | availableQuantity |     Number     |          |
+|   14   |  ratingsAverage   |     Number     |   d:0    |
+|   15   |  ratingsQuantity  |     Number     |   d:0    |
+|   16   |     comments      |  `[comments]`  |          |
+|   -    |         -         |       -        |    -     |
+|   17   |       price       |     Number     |          |
+|   18   |    hasDiscount    |    Boolean     | d:false  |
+|   19   |   discountKind    |     Number     |          |
+|   20   |  discountedPrice  |     Number     |          |
+|   -    |         -         |       -        |    -     |
+|   21   |      hasMag       |    Boolean     |          |
+|   22   |      magLink      |     String     |          |
+|   -    |         -         |       -        |    -     |
+|   23   |     createdBy     | Types.ObjectId |          |
+|   24   |     createdAt     |      Date      |  d:now   |
 
 <br>
 
-### **- discountKind enum -**
+### **- comments -**
 
-- percentage
-- exactPrice
+| Number |   Field   |      Type      | required |
+| :----: | :-------: | :------------: | :------: |
+|   1    |    id     | Types.ObjectId |          |
+|   2    |   name    |     String     |          |
+|   3    |  message  |     String     |          |
+|   4    |   rate    |     Number     |          |
+|   5    | createdAt |      Date      |          |
 
 <br>
+
+### **- discountKind -**
+
+- 1: percentage
+- 2: exactPrice
+
+<br>
+
+### **- discountKind -**
+
+- 1: dastgah
+- 2: ghat'e
 
 ---
 
@@ -195,13 +189,14 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 ### **ROUTES:**
 
 - /api/v1/orders --> GET
-- /api/v1/orders/list --> GET OP
-- /api/v1/orders/list/op-side --> GET OP
 - /api/v1/orders/:id --> GET
 - /api/v1/orders/stat/:id --> GET
 - /api/v1/orders/list/:mobileNumber --> GET
 - /api/v1/orders/workflow/:code --> GET
-
+- &
+- /api/v1/orders/list --> GET **[OPERATOR]**
+- /api/v1/orders/list/op-side --> GET **[OPERATOR]**
+- &
 - /api/v1/orders/service --> POST
 - /api/v1/orders/cart --> POST
 
@@ -209,62 +204,83 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 ### **ORDER MODEL:**
 
-<br>
-
 ### **- orderSchema -**
 
-| Number |        Field        |      Type       |  required  |
-| :----: | :-----------------: | :-------------: | :--------: |
-|   1    |        code         |     Number      |  ✔-unique  |
-|   -    |          -          |        -        |     -      |
-|   2    |       userId        | Types.ObjectId  |            |
-|   3    |      userName       |     String      |     ✔      |
-|   3    |       gender        |     String      |     ✔      |
-|   4    |       mobile        |     Number      |     ✔      |
-|   5    |        phone        |     Number      |            |
-|   6    |     postalCode      |     String      |            |
-|   7    |       address       |     String      |            |
-|   8    |         lat         |     String      |            |
-|   9    |        long         |     String      |            |
-|   -    |          -          |        -        |     -      |
-|   10   |     prepayment      |     Number      |            |
-|   11   |    overallPrice     |     Number      |            |
-|   11   | hasUsedDiscountCode |     Boolean     |            |
-|   12   |    discountCode     |     String      |            |
-|   13   |     paymentKind     | paymentKindEnum |            |
-|   14   |       hasPaid       |     Boolean     |  d:false   |
-|   -    |          -          |        -        |     -      |
-|   19   |     orderStatus     |     Number      |            |
-|   15   |    isClientSide     |     Boolean     |            |
-|   16   |       isDone        |     Boolean     |  d:false   |
-|   -    |          -          |        -        |     -      |
-|   15   |      isExpress      |     Boolean     |            |
-|   17   |      isService      |     Boolean     |            |
-|   18   |     serviceKind     | serviceKindEnum |            |
-|   20   |     [workflow]      |   [workflow]    |     ✔      |
-|   21   |     [products]      |   [products]    |     ✔      |
-|   22   |      createdAt      |      Date       | d:Date.now |
+Flags : d --> default
+
+| Number |      Field       |      Type      |  required  |
+| :----: | :--------------: | :------------: | :--------: |
+|   1    |       code       |     Number     |  ✔-unique  |
+|   -    |        -         |       -        |     -      |
+|   2    |      userId      | Types.ObjectId |            |
+|   3    |     userName     |     String     |     ✔      |
+|   4    |      isMale      |    Boolean     |     ✔      |
+|   5    |      mobile      |     string     |     ✔      |
+|   6    |      phone       |     string     |            |
+|   7    |    postalCode    |     String     |            |
+|   8    |     address      |     String     |            |
+|   9    |       lat        |     String     |            |
+|   10   |       long       |     String     |            |
+|   -    |        -         |       -        |     -      |
+|   11   |    prepayment    |     Number     |            |
+|   12   |   overallPrice   |     Number     |            |
+|   13   | usedDiscountCode |    Boolean     |            |
+|   14   |   discountCode   |     String     |            |
+|   15   |   paymentKind    |     Number     |            |
+|   16   |     hasPaid      |    Boolean     |  d:false   |
+|   -    |        -         |       -        |     -      |
+|   17   |   orderStatus    |     Number     |     ✔      |
+|   18   |   isClientSide   |    Boolean     |            |
+|   19   |      isDone      |    Boolean     |  d:false   |
+|   -    |        -         |       -        |     -      |
+|   20   |    isExpress     |    Boolean     |            |
+|   21   |    isService     |    Boolean     |     ✔      |
+|   22   |   serviceKind    |     Number     |            |
+|   -    |        -         |       -        |     -      |
+|   23   |     workflow     |  `[workflow]`  |     ✔      |
+|   -    |        -         |       -        |     -      |
+|   24   |     products     |  `[products]`  |     ✔      |
+|   -    |        -         |       -        |     -      |
+|   25   |    createdAt     |      Date      | d:Date.now |
 
 <br>
 
 ### **- workflow -**
 
-| Number |    Field    |  Type  |
-| :----: | :---------: | :----: |
-|   1    |    time     |  Date  |
-|   2    | orderStatus | Number |
-|   3    | description | String |
+| Number |    Field     |  Type  | required |
+| :----: | :----------: | :----: | :------: |
+|   1    |     time     |  Date  |    ✔     |
+|   2    |  flowStatus  | Number |    ✔     |
+|   3    | description? | String |          |
+|   4    |     by?      | Number |          |
+|   5    | attachment?  | String |          |
 
 <br>
 
 ### **- products -**
 
-| Number |    Field    |  Type  |
-| :----: | :---------: | :----: |
-|   1    |    title    | String |
-|   2    | description | String |
-|   3    |    price    | number |
-|   4    |  quantity   | number |
+| Number |    Field     |  Type  | required |
+| :----: | :----------: | :----: | :------: |
+|   1    |    title     | String |    ✔     |
+|   2    | description  | String |          |
+|   3    | initialPrice | number |          |
+|   4    |    price     | number |          |
+|   5    |   quantity   | number |          |
+
+<br>
+
+### **- serviceKind -**
+
+- 1: t'amir,
+- 2: t'aviz,
+
+<br>
+
+### **- paymentKind -**
+
+- 1: dargah banki,
+- 2: cart be cart,
+- 3: hozoori,
 
 <br>
 
@@ -281,10 +297,34 @@ Flags : t --> trim, l --> lowercase, d --> default, minlength --> mn, maxlength 
 
 <br>
 
+### **- flowStatus -**
+
+- 1: درخواست شما ایجاد شده است.
+
+- payment = 1, در انتظار پرداخت
+- transferring = 2, در حال جابجایی
+- received = 3, دریافت‌شده
+- cancelled = 4, مرجوع شده
+
+- troubleshooting = 5, عیب‌یابی
+- repairing = 6, تعمیر
+
+<br>
+
+---
+
+### Readme.md CheatSheet -->
+
+### ⌘K V --> split view
+
+### ⇧⌘V --> separate view
+
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
+
 ---
 
 <br>
 
-# **© APA, 2022-2023, all rights reserved**
+# **© APA, 2022-2023, All Rights Reserved**
 
 ![ascii_apa.png](ascii_apa.png)

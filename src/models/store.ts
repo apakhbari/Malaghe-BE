@@ -7,16 +7,19 @@ interface storeAttrs {
   title: string
   description?: string
   summary?: string
-  volumes?: {
-    width: string
-    length: string
-    height: string
-    weight: string
-  }
+  goodKind?: number
+
+  madeIn?: number
+  material?: string
+  width?: number
+  length?: number
+  height?: number
+  weight?: number
+
+  photoNum?: number
   photos?: [string]
-  madeIn?: string
-  goodKind: goodKind
-  availableQuantity: number
+
+  availableQuantity?: number
   ratingsAverage?: number
   ratingsQuantity?: number
   comments?: [
@@ -24,43 +27,40 @@ interface storeAttrs {
       id?: Types.ObjectId
       name?: string
       message?: string
+      rate?: number
       createdAt?: Date
     }
   ]
-  price: number
+
+  price?: number
   hasDiscount?: boolean
-  discountKind?: discountKind
+  discountKind?: number
   discountedPrice?: number
-  createdAt?: Date
-  createdBy?: Types.ObjectId
-  hasMag: boolean
+
+  hasMag?: boolean
   magLink?: string
-}
 
-enum discountKind {
-  percentage = 'درصد',
-  exactPrice = 'قیمت نهایی',
-}
-
-enum goodKind {
-  device = 'دستگاه',
-  segment = 'قطعه',
+  createdBy?: Types.ObjectId
+  createdAt?: Date
 }
 
 interface storeDoc extends mongoose.Document {
   title: string
   description?: string
   summary?: string
-  volumes?: {
-    width: string
-    length: string
-    height: string
-    weight: string
-  }
+  goodKind?: number
+
+  madeIn?: number
+  material?: string
+  width?: number
+  length?: number
+  height?: number
+  weight?: number
+
+  photoNum?: number
   photos?: [string]
-  madeIn?: string
-  goodKind: goodKind
-  availableQuantity: number
+
+  availableQuantity?: number
   ratingsAverage?: number
   ratingsQuantity?: number
   comments?: [
@@ -68,17 +68,22 @@ interface storeDoc extends mongoose.Document {
       id?: Types.ObjectId
       name?: string
       message?: string
+      rate?: number
       createdAt?: Date
     }
   ]
-  price: number
+
+  price?: number
   hasDiscount?: boolean
-  discountKind?: discountKind
+  discountKind?: number
   discountedPrice?: number
-  createdAt?: Date
-  createdBy?: Types.ObjectId
-  hasMag: boolean
+
+  hasMag?: boolean
   magLink?: string
+
+  createdBy?: Types.ObjectId
+  createdAt?: Date
+
   version: number
 }
 
@@ -92,26 +97,49 @@ const storeSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      trim: true,
     },
     description: {
       type: String,
       required: false,
-      trim: true,
     },
     summary: {
       type: String,
-      required: true,
-      trim: true,
+      required: false,
+    },
+    goodKind: {
+      type: Number,
+      required: false,
     },
 
-    volumes: {
-      width: String,
-      length: String,
-      height: String,
-      weight: String,
+    madeIn: {
+      type: Number,
+      required: false,
+    },
+    width: {
+      type: Number,
+      required: false,
+    },
+    length: {
+      type: Number,
+      required: false,
+    },
+    height: {
+      type: Number,
+      required: false,
+    },
+    weight: {
+      type: Number,
+      required: false,
+    },
+    material: {
+      type: String,
+      required: false,
     },
 
+    photoNum: {
+      type: Number,
+      required: false,
+    },
     photos: [
       {
         type: String,
@@ -119,21 +147,14 @@ const storeSchema = new mongoose.Schema(
       },
     ],
 
-    madeIn: {
-      type: String,
-    },
-    goodKind: {
-      type: goodKind,
-    },
-
     availableQuantity: {
       type: Number,
-      required: true,
+      required: false,
     },
     ratingsAverage: {
       type: Number,
       required: true,
-      default: 5,
+      default: 0,
     },
     ratingsQuantity: {
       type: Number,
@@ -145,18 +166,29 @@ const storeSchema = new mongoose.Schema(
         id: Types.ObjectId,
         name: String,
         message: String,
+        rate: Number,
         createdAt: Date,
       },
     ],
+
     price: {
       type: Number,
-      required: true,
+      required: false,
     },
     hasDiscount: {
       type: Boolean,
       required: true,
       default: false,
     },
+    discountKind: {
+      type: Number,
+      required: false,
+    },
+    discountedPrice: {
+      type: Number,
+      required: false,
+    },
+
     hasMag: {
       type: Boolean,
     },
@@ -164,14 +196,7 @@ const storeSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    discountKind: {
-      type: discountKind,
-      required: false,
-    },
-    discountedPrice: {
-      type: Number,
-      required: false,
-    },
+
     createdBy: {
       type: Types.ObjectId,
       required: false,

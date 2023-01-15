@@ -25,7 +25,7 @@ router.post(
     const {
       userId,
       userName,
-      gender,
+      isMale,
       mobile,
       phone,
       postalCode,
@@ -51,7 +51,7 @@ router.post(
       code: generatedCode,
       userId,
       userName,
-      gender,
+      isMale,
       phone,
       mobile,
       postalCode,
@@ -69,8 +69,7 @@ router.post(
       workflow: [
         {
           time: dateTime,
-          orderStatus: 1,
-          description: 'درخواست شما ثبت شد',
+          flowStatus: 1,
         },
       ],
       products,
