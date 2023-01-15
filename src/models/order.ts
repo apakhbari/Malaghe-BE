@@ -14,6 +14,7 @@ interface orderAttrs {
   address?: string
   lat?: string
   long?: string
+  description?: string
 
   prepayment?: number
   overallPrice?: number
@@ -52,35 +53,6 @@ interface orderAttrs {
   createdAt?: Date
 }
 
-{
-  /*
-
-const serviceKind = {
-  1: 'تعمیر',
-  2:  'تعویض',
-}
-
-{
-  const orderStatus = {
-    1: 'ایجاد شده',
-    2: 'در انتظار پرداخت',
-    3: 'در حال جابجایی',
-    4: 'دریافت‌شده',
-    5: 'مرجوع شده',
-
-    6: 'عیب‌یابی',
-    7: 'تعمیر',
-  }
-
-/*
-const paymentKind = {
-  1: 'درگاه بانکی',
-  2: 'کارت به کارت',
-  3: 'حضوری',
-}
-*/
-}
-
 interface orderDoc extends mongoose.Document {
   code: number
 
@@ -93,6 +65,7 @@ interface orderDoc extends mongoose.Document {
   address?: string
   lat?: string
   long?: string
+  description?: string
 
   prepayment?: number
   overallPrice?: number
@@ -177,6 +150,10 @@ const orderSchema = new mongoose.Schema(
       required: false,
     },
     long: {
+      type: String,
+      required: false,
+    },
+    description: {
       type: String,
       required: false,
     },

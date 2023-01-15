@@ -175,7 +175,7 @@ Flags : d --> default
 
 <br>
 
-### **- discountKind -**
+### **- goodKind -**
 
 - 1: dastgah
 - 2: ghat'e
@@ -221,27 +221,28 @@ Flags : d --> default
 |   8    |     address      |     String     |            |
 |   9    |       lat        |     String     |            |
 |   10   |       long       |     String     |            |
+|   11   |   description    |     String     |            |
 |   -    |        -         |       -        |     -      |
-|   11   |    prepayment    |     Number     |            |
-|   12   |   overallPrice   |     Number     |            |
-|   13   | usedDiscountCode |    Boolean     |            |
-|   14   |   discountCode   |     String     |            |
-|   15   |   paymentKind    |     Number     |            |
-|   16   |     hasPaid      |    Boolean     |  d:false   |
+|   12   |    prepayment    |     Number     |            |
+|   13   |   overallPrice   |     Number     |            |
+|   14   | usedDiscountCode |    Boolean     |            |
+|   15   |   discountCode   |     String     |            |
+|   16   |   paymentKind    |     Number     |            |
+|   17   |     hasPaid      |    Boolean     |  d:false   |
 |   -    |        -         |       -        |     -      |
-|   17   |   orderStatus    |     Number     |     ✔      |
-|   18   |   isClientSide   |    Boolean     |            |
-|   19   |      isDone      |    Boolean     |  d:false   |
+|   18   |   orderStatus    |     Number     |     ✔      |
+|   19   |   isClientSide   |    Boolean     |            |
+|   20   |      isDone      |    Boolean     |  d:false   |
 |   -    |        -         |       -        |     -      |
-|   20   |    isExpress     |    Boolean     |            |
-|   21   |    isService     |    Boolean     |     ✔      |
-|   22   |   serviceKind    |     Number     |            |
+|   21   |    isExpress     |    Boolean     |            |
+|   22   |    isService     |    Boolean     |     ✔      |
+|   23   |   serviceKind    |     Number     |            |
 |   -    |        -         |       -        |     -      |
-|   23   |     workflow     |  `[workflow]`  |     ✔      |
+|   24   |     workflow     |  `[workflow]`  |     ✔      |
 |   -    |        -         |       -        |     -      |
-|   24   |     products     |  `[products]`  |     ✔      |
+|   25   |     products     |  `[products]`  |     ✔      |
 |   -    |        -         |       -        |     -      |
-|   25   |    createdAt     |      Date      | d:Date.now |
+|   26   |    createdAt     |      Date      | d:Date.now |
 
 <br>
 

@@ -28,7 +28,7 @@ const start = async () => {
     console.log('Connected to mongodb!')
 
     console.log(`########################################
-    developed by:
+  developed by:
       _______  _______  _______
      |   _   ||       ||   _   |
      |  |_|  ||    _  ||  |_|  |
@@ -36,9 +36,8 @@ const start = async () => {
      |       ||    ___||       |
      |   _   ||   |    |   _   |
      |__| |__||___|    |__| |__|
-     © 2022-2023, APA, All Rights Reserved.
-     Happy Hacking!
-     ########################################
+  © 2022-2023, APA, All Rights Reserved.
+########################################
      `)
   } catch (err) {
     console.log(err)
