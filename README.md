@@ -12,8 +12,6 @@
 
 <br>
 
-![architecture.png](architecture.png)
-
 ---
 
 ## **Links**:
@@ -21,23 +19,6 @@
 ### [FrontEnd github](https://github.com/apakhbari/Malaghe-FE)
 
 ### [docker](https://hub.docker.com/repository/docker/apakhbari/malaghe)
-
----
-
-## **TODO**:
-
-1- for all of code, set proper return codes
-
-    res.status(204).json({
-      status: 'success',
-      data: null
-    });
-
-2- userClicks in the database model
-
-3- nginx hardening
-
-4- nginx custom error page
 
 ---
 
@@ -313,16 +294,6 @@ Flags : d --> default
 - repairing = 6, تعمیر
 
 <br>
-
----
-
-### Readme.md CheatSheet -->
-
-### ⌘K V --> split view
-
-### ⇧⌘V --> separate view
-
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
 
 ---
 
