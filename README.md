@@ -16,9 +16,9 @@
 
 ## **Links**:
 
-### [FrontEnd github](https://github.com/apakhbari/Malaghe-FE)
+### [Malaghe FrontEnd](https://github.com/apakhbari/Malaghe-FE)
 
-### [docker](https://hub.docker.com/repository/docker/apakhbari/malaghe)
+### [malaghe utility package](https://github.com/apakhbari/malaghe-k8s-utility), [npm utility package](https://www.npmjs.com/package/@apa_malaghe/utility)
 
 ---
 
